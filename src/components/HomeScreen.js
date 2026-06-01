@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Hammy from './Hammy';
 import { funFacts } from '../data/funFacts';
 import { homeMessages, pick } from '../data/hammyMessages';
+import { playClick } from '../utils/sounds';
 
 const HomeScreen = ({ onStartQuiz, onStartCheck, onStartFoodQuiz, onStartAgeAdvice }) => {
   const [msg]  = useState(() => pick(homeMessages));
@@ -39,7 +40,7 @@ const HomeScreen = ({ onStartQuiz, onStartCheck, onStartFoodQuiz, onStartAgeAdvi
       </div>
 
       <div className="home-menu">
-        <div className="menu-card menu-card-check" onClick={onStartCheck} role="button" tabIndex={0}>
+        <div className="menu-card menu-card-check" onClick={() => { playClick(); onStartCheck(); }} role="button" tabIndex={0}>
           <div className="menu-card-icon">🔍</div>
           <div className="menu-card-title">口腔機能セルフチェック</div>
           <div className="menu-card-desc">
@@ -49,7 +50,7 @@ const HomeScreen = ({ onStartQuiz, onStartCheck, onStartFoodQuiz, onStartAgeAdvi
           <div className="menu-card-badge">10問 / はい・いいえ</div>
         </div>
 
-        <div className="menu-card menu-card-quiz" onClick={onStartQuiz} role="button" tabIndex={0}>
+        <div className="menu-card menu-card-quiz" onClick={() => { playClick(); onStartQuiz(); }} role="button" tabIndex={0}>
           <div className="menu-card-icon">❓</div>
           <div className="menu-card-title">ハミークイズ</div>
           <div className="menu-card-desc">
@@ -59,7 +60,7 @@ const HomeScreen = ({ onStartQuiz, onStartCheck, onStartFoodQuiz, onStartAgeAdvi
           <div className="menu-card-badge">10問 / 4択</div>
         </div>
 
-        <div className="menu-card menu-card-food" onClick={onStartFoodQuiz} role="button" tabIndex={0}>
+        <div className="menu-card menu-card-food" onClick={() => { playClick(); onStartFoodQuiz(); }} role="button" tabIndex={0}>
           <div className="menu-card-icon">🍎</div>
           <div className="menu-card-title">食べ物と歯のクイズ</div>
           <div className="menu-card-desc">
@@ -74,17 +75,17 @@ const HomeScreen = ({ onStartQuiz, onStartCheck, onStartFoodQuiz, onStartAgeAdvi
         <div className="age-select-title">📋 年齢別アドバイス</div>
         <div className="age-select-desc">あなたの年齢層を選んでね</div>
         <div className="age-btns">
-          <button className="age-btn age-btn-child" onClick={() => onStartAgeAdvice('child')}>
+          <button className="age-btn age-btn-child" onClick={() => { playClick(); onStartAgeAdvice('child'); }}>
             <span className="age-btn-emoji">🧒</span>
             <span className="age-btn-label">子ども</span>
             <span className="age-btn-sub">15歳以下</span>
           </button>
-          <button className="age-btn age-btn-adult" onClick={() => onStartAgeAdvice('adult')}>
+          <button className="age-btn age-btn-adult" onClick={() => { playClick(); onStartAgeAdvice('adult'); }}>
             <span className="age-btn-emoji">🧑</span>
             <span className="age-btn-label">大人</span>
             <span className="age-btn-sub">16〜64歳</span>
           </button>
-          <button className="age-btn age-btn-senior" onClick={() => onStartAgeAdvice('senior')}>
+          <button className="age-btn age-btn-senior" onClick={() => { playClick(); onStartAgeAdvice('senior'); }}>
             <span className="age-btn-emoji">👴</span>
             <span className="age-btn-label">高齢者</span>
             <span className="age-btn-sub">65歳以上</span>

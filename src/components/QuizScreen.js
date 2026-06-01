@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Hammy from './Hammy';
 import { allQuestions } from '../data/quizData';
 import { pick, quizIdleMessages, correctMessages, wrongMessages } from '../data/hammyMessages';
+import { playCorrect, playWrong, playFanfare, playClick } from '../utils/sounds';
 
 const QUIZ_COUNT = 10;
 
@@ -28,13 +29,16 @@ const QuizScreen = ({ onComplete, onBack }) => {
     const correct = i === q.answer;
     setAnim(correct ? 'correct' : 'wrong');
     setMsg(correct ? pick(correctMessages) : pick(wrongMessages));
+    correct ? playCorrect() : playWrong();
   };
 
   const handleNext = () => {
     const newAnswers = [...answers, { id: q.id, category: q.category, correct: selected === q.answer }];
     if (idx === quizQuestions.length - 1) {
+      playFanfare();
       onComplete(newAnswers);
     } else {
+      playClick();
       setAnswers(newAnswers);
       setIdx(idx + 1);
       setSelected(null);
@@ -108,7 +112,7 @@ const QuizScreen = ({ onComplete, onBack }) => {
         {/* 戻るリンク */}
         {!answered && (
           <div style={{ textAlign: 'center', marginTop: 16 }}>
-            <button className="btn-back" onClick={idx === 0 ? onBack : undefined}>
+            <button className="btn-back" onClick={idx === 0 ? () => { playClick(); onBack(); } : undefined}>
               {idx === 0 ? '← ホームに戻る' : ''}
             </button>
           </div>

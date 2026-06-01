@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Hammy from './Hammy';
 import { foodQuestions } from '../data/foodQuizData';
 import { pick, foodIdleMessages, correctMessages, wrongMessages } from '../data/hammyMessages';
+import { playCorrect, playWrong, playFanfare, playClick } from '../utils/sounds';
 
 const FoodQuizScreen = ({ onBack }) => {
   const [idx,      setIdx]      = useState(0);
@@ -22,15 +23,18 @@ const FoodQuizScreen = ({ onBack }) => {
     setAnswered(true);
     setAnim(correct ? 'correct' : 'wrong');
     setMsg(correct ? pick(correctMessages) : pick(wrongMessages));
+    correct ? playCorrect() : playWrong();
   };
 
   const handleNext = () => {
     const newAnswers = [...answers, { id: q.id, correct: selected === q.answer }];
     if (idx === foodQuestions.length - 1) {
+      playFanfare();
       setAnswers(newAnswers);
       setDone(true);
       setAnim('cheer');
     } else {
+      playClick();
       setAnswers(newAnswers);
       setIdx(idx + 1);
       setSelected(null);

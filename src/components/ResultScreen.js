@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Hammy from './Hammy';
 import { getResult, categoryLabels } from '../data/quizData';
 import { pick } from '../data/hammyMessages';
+import { playClick } from '../utils/sounds';
 
 const ResultScreen = ({ answers, onTraining, onReset }) => {
   const score  = answers.filter(a => a.correct).length;
@@ -74,10 +75,10 @@ const ResultScreen = ({ answers, onTraining, onReset }) => {
         <div className="deco-teeth">🦷 🦷 🦷 🦷 🦷</div>
 
         <div className="btn-col">
-          <button className="btn-primary btn-green" onClick={onTraining}>
+          <button className="btn-primary btn-green" onClick={() => { playClick(); onTraining(); }}>
             📚 ケアのコツを見る
           </button>
-          <button className="btn-secondary" onClick={onReset}>
+          <button className="btn-secondary" onClick={() => { playClick(); onReset(); }}>
             もう一度チャレンジ
           </button>
         </div>
