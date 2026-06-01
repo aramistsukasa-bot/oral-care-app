@@ -462,3 +462,84 @@ body {
   position: absolute; top: 6px; right: 10px;
   font-size: 16px; font-weight: 900;
 }
+
+/* ── Age Select Section (Home) ────────────── */
+.age-select-section {
+  background: white;
+  border-radius: 20px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(0,188,212,.10);
+}
+.age-select-title {
+  font-size: 15px; font-weight: 800; color: #37474F;
+  margin-bottom: 4px;
+}
+.age-select-desc {
+  font-size: 12px; color: #90A4AE; margin-bottom: 14px;
+}
+.age-btns {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;
+}
+.age-btn {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; padding: 14px 8px;
+  border-radius: 16px; border: 2.5px solid transparent;
+  cursor: pointer; font-family: inherit;
+  transition: all .15s;
+}
+.age-btn:hover { transform: translateY(-2px); }
+.age-btn:active { transform: translateY(0); }
+.age-btn-emoji { font-size: 28px; line-height: 1; }
+.age-btn-label { font-size: 13px; font-weight: 800; }
+.age-btn-sub   { font-size: 10px; font-weight: 500; }
+
+.age-btn-child {
+  background: #E8F5E9; border-color: #A5D6A7; color: #2E7D32;
+}
+.age-btn-child:hover { background: #C8E6C9; }
+.age-btn-adult {
+  background: #E3F2FD; border-color: #90CAF9; color: #1565C0;
+}
+.age-btn-adult:hover { background: #BBDEFB; }
+.age-btn-senior {
+  background: #FFF3E0; border-color: #FFCC80; color: #E64A19;
+}
+.age-btn-senior:hover { background: #FFE0B2; }
+
+/* ── Age Advice Screen ────────────────────── */
+.age-hero {
+  border-radius: 20px; border: 2.5px solid;
+  padding: 22px; text-align: center;
+  margin-bottom: 14px;
+}
+.age-hero-emoji  { font-size: 52px; line-height: 1; margin-bottom: 8px; }
+.age-hero-label  { font-size: 26px; font-weight: 900; line-height: 1; }
+.age-hero-sublabel {
+  font-size: 13px; color: #78909C; font-weight: 500; margin: 4px 0 10px;
+}
+.age-hero-title  { font-size: 14px; font-weight: 700; }
+
+.age-section-card {
+  background: white; border-radius: 18px;
+  border: 2px solid; padding: 18px 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+.age-section-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+}
+.age-section-emoji { font-size: 24px; }
+.age-section-title { font-size: 15px; font-weight: 800; }
+
+.age-item-list {
+  list-style: none; display: flex; flex-direction: column; gap: 10px;
+}
+.age-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; color: #546E7A; line-height: 1.6;
+}
+.age-item-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 6px;
+}

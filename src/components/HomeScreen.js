@@ -3,7 +3,7 @@ import Hammy from './Hammy';
 import { funFacts } from '../data/funFacts';
 import { homeMessages, pick } from '../data/hammyMessages';
 
-const HomeScreen = ({ onStartQuiz, onStartCheck, onStartFoodQuiz }) => {
+const HomeScreen = ({ onStartQuiz, onStartCheck, onStartFoodQuiz, onStartAgeAdvice }) => {
   const [msg]  = useState(() => pick(homeMessages));
   const [fact] = useState(() => pick(funFacts));
 
@@ -67,6 +67,28 @@ const HomeScreen = ({ onStartQuiz, onStartCheck, onStartFoodQuiz }) => {
             食と口腔ケアの関係を理由つきで楽しく学ぼう！
           </div>
           <div className="menu-card-badge">10問 / 良い・悪い</div>
+        </div>
+      </div>
+
+      <div className="age-select-section">
+        <div className="age-select-title">📋 年齢別アドバイス</div>
+        <div className="age-select-desc">あなたの年齢層を選んでね</div>
+        <div className="age-btns">
+          <button className="age-btn age-btn-child" onClick={() => onStartAgeAdvice('child')}>
+            <span className="age-btn-emoji">🧒</span>
+            <span className="age-btn-label">子ども</span>
+            <span className="age-btn-sub">15歳以下</span>
+          </button>
+          <button className="age-btn age-btn-adult" onClick={() => onStartAgeAdvice('adult')}>
+            <span className="age-btn-emoji">🧑</span>
+            <span className="age-btn-label">大人</span>
+            <span className="age-btn-sub">16〜64歳</span>
+          </button>
+          <button className="age-btn age-btn-senior" onClick={() => onStartAgeAdvice('senior')}>
+            <span className="age-btn-emoji">👴</span>
+            <span className="age-btn-label">高齢者</span>
+            <span className="age-btn-sub">65歳以上</span>
+          </button>
         </div>
       </div>
 

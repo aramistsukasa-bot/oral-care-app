@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import Hammy from './Hammy';
-import { questions } from '../data/quizData';
+import { allQuestions } from '../data/quizData';
 import { pick, quizIdleMessages, correctMessages, wrongMessages } from '../data/hammyMessages';
 
+const QUIZ_COUNT = 10;
+
 const QuizScreen = ({ onComplete, onBack }) => {
+  const [quizQuestions] = useState(() => {
+    const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, QUIZ_COUNT);
+  });
   const [idx,       setIdx]      = useState(0);
   const [selected,  setSelected] = useState(null);
   const [answered,  setAnswered] = useState(false);
@@ -11,9 +17,9 @@ const QuizScreen = ({ onComplete, onBack }) => {
   const [anim,      setAnim]     = useState('idle');
   const [msg,       setMsg]      = useState(() => pick(quizIdleMessages));
 
-  const q        = questions[idx];
+  const q        = quizQuestions[idx];
   const isCorrect = selected === q.answer;
-  const progress  = (idx / questions.length) * 100;
+  const progress  = (idx / quizQuestions.length) * 100;
 
   const handleSelect = (i) => {
     if (answered) return;
@@ -26,7 +32,7 @@ const QuizScreen = ({ onComplete, onBack }) => {
 
   const handleNext = () => {
     const newAnswers = [...answers, { id: q.id, category: q.category, correct: selected === q.answer }];
-    if (idx === questions.length - 1) {
+    if (idx === quizQuestions.length - 1) {
       onComplete(newAnswers);
     } else {
       setAnswers(newAnswers);
@@ -58,7 +64,7 @@ const QuizScreen = ({ onComplete, onBack }) => {
         {/* プログレスバー */}
         <div className="progress-wrap">
           <div className="progress-label">
-            <span>問題 {idx + 1} / {questions.length}</span>
+            <span>問題 {idx + 1} / {quizQuestions.length}</span>
             <span>{Math.round(progress)}%</span>
           </div>
           <div className="progress-bar">
@@ -95,7 +101,7 @@ const QuizScreen = ({ onComplete, onBack }) => {
         {/* 次へボタン */}
         {answered && (
           <button className="btn-primary btn-next" onClick={handleNext}>
-            {idx === questions.length - 1 ? '結果を見る 🏁' : '次の問題 →'}
+            {idx === quizQuestions.length - 1 ? '結果を見る 🏁' : '次の問題 →'}
           </button>
         )}
 

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Hammy from './Hammy';
-import { getResult, categoryLabels, questions } from '../data/quizData';
+import { getResult, categoryLabels } from '../data/quizData';
 import { pick } from '../data/hammyMessages';
 
 const ResultScreen = ({ answers, onTraining, onReset }) => {
   const score  = answers.filter(a => a.correct).length;
-  const total  = questions.length;
+  const total  = answers.length;
   const result = getResult(score);
   const [msg]  = useState(() => pick(result.messages));
 

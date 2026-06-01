@@ -7,6 +7,7 @@ import SelfCheckScreen   from './components/SelfCheckScreen';
 import SelfCheckResult   from './components/SelfCheckResult';
 import SelfCheckTraining from './components/SelfCheckTraining';
 import FoodQuizScreen    from './components/FoodQuizScreen';
+import AgeAdviceScreen   from './components/AgeAdviceScreen';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [answers,       setAnswers]       = useState([]);
   const [checkAnswers,  setCheckAnswers]  = useState([]);
   const [needsTraining, setNeedsTraining] = useState([]);
+  const [ageKey,        setAgeKey]        = useState(null);
 
   const handleQuizComplete  = (ans) => { setAnswers(ans);      setScreen('result'); };
   const handleCheckComplete = (ans) => { setCheckAnswers(ans); setScreen('selfcheck-result'); };
@@ -29,6 +31,7 @@ function App() {
             onStartQuiz={() => setScreen('quiz')}
             onStartCheck={() => setScreen('selfcheck')}
             onStartFoodQuiz={() => setScreen('food-quiz')}
+            onStartAgeAdvice={(key) => { setAgeKey(key); setScreen('age-advice'); }}
           />
         )}
 
@@ -54,6 +57,11 @@ function App() {
         {/* ── 食べ物クイズ フロー ── */}
         {screen === 'food-quiz' && (
           <FoodQuizScreen onBack={() => setScreen('home')} />
+        )}
+
+        {/* ── 年齢別アドバイス フロー ── */}
+        {screen === 'age-advice' && ageKey && (
+          <AgeAdviceScreen ageKey={ageKey} onBack={() => setScreen('home')} />
         )}
 
         {/* ── セルフチェック フロー ── */}
